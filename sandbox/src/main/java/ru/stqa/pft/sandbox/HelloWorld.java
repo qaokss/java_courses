@@ -6,7 +6,6 @@ public class HelloWorld {
         hello("user");
 
         Square s = new Square(4);
-        Square s2 = new Square(34234);
         System.out.println("Площадь квадрата со стороной " + s.len + " = " + s.area());
 
         Rectangle r = new Rectangle(4, 6);
