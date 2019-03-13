@@ -11,9 +11,9 @@ public class HelloWorld {
         Rectangle r = new Rectangle(4, 6);
         System.out.println("Площадь прямоугольника со второнами " + r.a + " и " + r.b + " = " + r.area());
 
-        Point n = new Point(15, 10);
-        Point n2 = new Point(20, 30);
-        System.out.println("Расстояние между точками (" + n.x + "," + n.y + ") и (" + n2.x + "," + n2.y + ") = " + Point.countDistance(n, n2));
+        Point firstPoint = new Point(15, 10);
+        Point secondPoint = new Point(20, 30);
+        System.out.println("Расстояние между точками (" + firstPoint.x + "," + firstPoint.y + ") и (" + secondPoint.x + "," + secondPoint.y + ") = " + firstPoint.countDistance(secondPoint));
 
     }
 
