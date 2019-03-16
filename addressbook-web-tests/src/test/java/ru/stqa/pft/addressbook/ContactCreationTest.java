@@ -98,7 +98,6 @@ public class ContactCreationTest {
     wd.findElement(By.name("address2")).click();
     wd.findElement(By.name("address2")).clear();
     wd.findElement(By.name("address2")).sendKeys(newContactData.getAddress2());
-    wd.findElement(By.name("theform")).click();
     wd.findElement(By.name("phone2")).click();
     wd.findElement(By.name("phone2")).clear();
     wd.findElement(By.name("phone2")).sendKeys(newContactData.getHome());

@@ -27,7 +27,11 @@ public class NewContactData {
     private final String home;
     private final String notes;
 
-    public NewContactData(String firstname, String middlename, String lastname, String nickname, String title, String namecompany, String address, String homephone, String mobilephone, String workphone, String fax, String email1, String email2, String email3, String homepage, String birthdayDay, String birthdayMonth, String birthdayYear, String annyDay, String annyMonth, String annyYear, String group, String address2, String home, String notes) {
+    public NewContactData(String firstname, String middlename, String lastname, String nickname, String title,
+                          String namecompany, String address, String homephone, String mobilephone, String workphone,
+                          String fax, String email1, String email2, String email3, String homepage, String birthdayDay,
+                          String birthdayMonth, String birthdayYear, String annyDay, String annyMonth, String annyYear,
+                          String group, String address2, String home, String notes) {
         this.firstname = firstname;
         this.middlename = middlename;
         this.lastname = lastname;
