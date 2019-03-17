@@ -25,7 +25,7 @@ public class GroupHelper extends HelperBase {
         click(By.name("new"));
     }
 
-    public void returntoGroupPage() {
+    public void returnToGroupPage() {
         click(By.linkText("groups"));
     }
 
