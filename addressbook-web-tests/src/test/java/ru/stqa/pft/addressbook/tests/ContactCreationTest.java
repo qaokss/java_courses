@@ -4,6 +4,7 @@ import org.testng.annotations.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
+import ru.stqa.pft.addressbook.model.NewContactData;
 
 import java.util.concurrent.TimeUnit;
 
