@@ -151,35 +151,8 @@ public class NewContactData {
         return address2;
     }
 
-    public String getHome() {
-        return home;
-    }
+    public String getHome() { return home; }
 
-    public String getNotes() {
-        return notes;
-    }
-
-    public static class GroupData {
-        private final String name;
-        private final String header;
-        private final String footer;
-
-        public GroupData(String name, String header, String footer) {
-            this.name = name;
-            this.header = header;
-            this.footer = footer;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public String getHeader() {
-            return header;
-        }
-
-        public String getFooter() {
-            return footer;
-        }
-    }
+    public String getNotes() { return notes; }
 }
+
