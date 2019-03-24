@@ -14,7 +14,7 @@ public class ContactCreationTest extends TestBase {
             "Lastname", "Nickname", "Title", "Tne Best Company", "London",
             "123456798", "5553535", "", "", "qwe@as.fg",
             "", "", "qwerty.xx.ss", "21", "December",
-            "2000", "", "", "", "test1", "", "", ""));
+            "2000", "", "", "", "test55", "", "", ""));
     app.getContactHelper().submitContactCreation();
     app.getNavigationHelper().gotoHomePage();
   }
