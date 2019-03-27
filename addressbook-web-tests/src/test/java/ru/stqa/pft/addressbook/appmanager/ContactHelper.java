@@ -1,8 +1,11 @@
 package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
-import ru.stqa.pft.addressbook.model.NewContactData;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
+import ru.stqa.pft.addressbook.model.ContactData;
 
 public class ContactHelper extends HelperBase {
 
@@ -10,38 +13,30 @@ public class ContactHelper extends HelperBase {
         super(wd);
     }
 
-    public void fillNewContact(NewContactData newContactData) {
-        type(By.name("firstname"), newContactData.getFirstname());
-        type(By.name("middlename"), newContactData.getMiddlename());
-        type(By.name("lastname"), newContactData.getLastname());
-        type(By.name("nickname"), newContactData.getNickname());
-        type(By.name("title"), newContactData.getTitle());
-        type(By.name("company"), newContactData.getNamecompany());
-        type(By.name("address"), newContactData.getAddress());
-        type(By.name("mobile"), newContactData.getMobilephone());
-        type(By.name("email"), newContactData.getEmail1());
-        type(By.name("homepage"), newContactData.getHomepage());
-        chooseDropDown(By.name("bday"), newContactData.getBirthdayDay());
-        chooseDropDown(By.name("bmonth"), newContactData.getBirthdayMonth());
-        type(By.name("byear"), newContactData.getBirthdayYear());
-        chooseDropDown(By.name("new_group"), newContactData.getGroup());
+    public void fillNewContact(ContactData contactData, boolean creation) {
+        type(By.name("firstname"), contactData.getFirstname());
+        type(By.name("middlename"), contactData.getMiddlename());
+        type(By.name("lastname"), contactData.getLastname());
+        type(By.name("nickname"), contactData.getNickname());
+        type(By.name("title"), contactData.getTitle());
+        type(By.name("company"), contactData.getNamecompany());
+        type(By.name("address"), contactData.getAddress());
+        type(By.name("mobile"), contactData.getMobilephone());
+        type(By.name("email"), contactData.getEmail1());
+        type(By.name("homepage"), contactData.getHomepage());
+        chooseDropDown(By.name("bday"), contactData.getBirthdayDay());
+        chooseDropDown(By.name("bmonth"), contactData.getBirthdayMonth());
+        type(By.name("byear"), contactData.getBirthdayYear());
+
+        if (creation) {
+            new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+            chooseDropDown(By.name("new_group"), contactData.getGroup());
+        } else {
+            Assert.assertFalse(isElementPresent(By.name("new_group")));
+        }
+        
     }
 
-    public void fillEditedContact(NewContactData newContactData) {
-        type(By.name("firstname"), newContactData.getFirstname());
-        type(By.name("middlename"), newContactData.getMiddlename());
-        type(By.name("lastname"), newContactData.getLastname());
-        type(By.name("nickname"), newContactData.getNickname());
-        type(By.name("title"), newContactData.getTitle());
-        type(By.name("company"), newContactData.getNamecompany());
-        type(By.name("address"), newContactData.getAddress());
-        type(By.name("mobile"), newContactData.getMobilephone());
-        type(By.name("email"), newContactData.getEmail1());
-        type(By.name("homepage"), newContactData.getHomepage());
-        chooseDropDown(By.name("bday"), newContactData.getBirthdayDay());
-        chooseDropDown(By.name("bmonth"), newContactData.getBirthdayMonth());
-        type(By.name("byear"), newContactData.getBirthdayYear());
-    }
 
     public void submitContactCreation() {
         click(By.xpath("(//input[@name='submit'])[2]"));
