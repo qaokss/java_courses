@@ -16,8 +16,8 @@ public class ContactDeletionTest extends TestBase {
                     "", "", "qwerty.xx.ss", "21", "December",
                     "2000", "", "", "", "test1", "",
                     "", ""), true);
+            app.getNavigationHelper().gotoHomePage();
         }
-        app.getNavigationHelper().gotoHomePage();
         app.getContactHelper().chooseCheckboxContact();
         app.getContactHelper().initContactDeletion();
         app.getContactHelper().acceptAlert();
