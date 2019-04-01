@@ -1,7 +1,6 @@
 package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
@@ -27,13 +26,10 @@ public class ContactHelper extends HelperBase {
         chooseDropDown(By.name("bday"), contactData.getBirthdayDay());
         chooseDropDown(By.name("bmonth"), contactData.getBirthdayMonth());
         type(By.name("byear"), contactData.getBirthdayYear());
-
         if (creation) {
             new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
             chooseDropDown(By.name("new_group"), contactData.getGroup());
-        } else {
-            Assert.assertFalse(isElementPresent(By.name("new_group")));
-        }
+        } else Assert.assertFalse(isElementPresent(By.name("new_group")));
 
     }
 
@@ -60,5 +56,14 @@ public class ContactHelper extends HelperBase {
 
     public void acceptAlert() {
         wd.switchTo().alert().accept();
+    }
+
+    public boolean isThereAContact() {
+        return isElementPresent(By.name("selected[]"));
+    }
+
+    public void createNewContact(ContactData contactData, boolean creation) {
+        fillNewContact(contactData, creation);
+        submitContactCreation();
     }
 }
