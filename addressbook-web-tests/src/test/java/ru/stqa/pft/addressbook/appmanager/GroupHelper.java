@@ -14,6 +14,7 @@ public class GroupHelper extends HelperBase {
         click(By.name("submit"));
     }
 
+    //Заполнение формы создания/редактирования группы
     public void fillGroupForm(GroupData groupData) {
         type(By.name("group_name"), groupData.getName());
         type(By.name("group_header"), groupData.getHeader());
@@ -33,8 +34,10 @@ public class GroupHelper extends HelperBase {
         click(By.xpath("(//input[@name='delete'])[2]"));
     }
 
-    public void selectGroup() {
-        click(By.name("selected[]"));
+
+    // находим элемент по селектору и кликаем по указанному индексу
+    public void selectGroup(int index) {
+        wd.findElements(By.name("selected[]")).get(index).click();
     }
 
     public void initGroupModification() {
@@ -53,10 +56,13 @@ public class GroupHelper extends HelperBase {
 
     }
 
+    //Метод проверяет есть ли хотя бы одна созданная группа
     public boolean isThereAGroup() {
         return isElementPresent(By.name("selected[]"));
     }
 
+
+    // Метод считает кол-во элементов (групп) на странице
     public int getGroupCount() {
         return wd.findElements(By.name("selected[]")).size();
     }
