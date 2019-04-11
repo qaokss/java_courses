@@ -6,17 +6,15 @@ import ru.stqa.pft.addressbook.model.ContactData;
 
 public class ContactCreationTest extends TestBase {
 
-  @Test
-  public void testContactCreation() throws Exception {
+    @Test
+    public void testContactCreation() throws Exception {
 
-    app.getNavigationHelper().gotoAddContactPage();
-    app.getContactHelper().fillNewContact(new ContactData("TestFirtsName", "Middlename",
-            "Lastname", "Nickname", "Title", "Tne Best Company", "London",
-            "123456798", "5553535", "", "", "qwe@as.fg",
-            "", "", "qwerty.xx.ss", "21", "December",
-            "2000", "", "", "", "test1", "", "", ""), true);
-    app.getContactHelper().submitContactCreation();
-    app.getNavigationHelper().gotoHomePage();
-  }
+        app.getNavigationHelper().gotoAddContactPage();
+        app.getContactHelper().fillNewContact(new ContactData(999, "TestFirtsName", "Middlename",
+                "Lastname", "Nickname", "adr", "5678", "London@fg.tyh",
+                "", "10", "January", "2000", "000"), true);
+        app.getContactHelper().submitContactCreation();
+        app.getNavigationHelper().gotoHomePage();
+    }
 
 }
