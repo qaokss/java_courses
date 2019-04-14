@@ -14,21 +14,21 @@ public class GroupModificationTest extends TestBase {
     public void ensurePreconditions() {
         app.goTo().groupPage();
         if (app.group().list().size() == 0) {
-            app.group().create(new GroupData("test1", "qwe", "rty"));
+            app.group().create(new GroupData().withName("testName").withFooter("testFooter").withHeader("testHeader"));
         }
     }
 
     @Test
     public void testGroupModification() {
         List<GroupData> before = app.group().list();
-        GroupData group = new GroupData(before.get(before.size() - 1).getId(), "110", "test555", "test678");
-        int lastGroup = before.size() - 1;
-
-        app.group().modify(group, lastGroup);
+        int indexOfLastGroup = before.size() - 1;
+        GroupData newGroup = new GroupData().
+                withId(before.get(indexOfLastGroup).getId()).withName("testName").withFooter("testFooter").withHeader("testHeader");
+        app.group().modify(newGroup, indexOfLastGroup);
         List<GroupData> after = app.group().list();
         Assert.assertEquals(after.size(), before.size());
-        before.remove(lastGroup);
-        before.add(group);
+        before.remove(indexOfLastGroup);
+        before.add(newGroup);
 
 // сравнение отсортированных списков по id
         Comparator<? super GroupData> byId = Comparator.comparingInt(GroupData::getId);

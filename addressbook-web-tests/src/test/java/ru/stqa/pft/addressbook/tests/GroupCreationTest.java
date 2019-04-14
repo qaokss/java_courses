@@ -13,7 +13,7 @@ public class GroupCreationTest extends TestBase {
     public void testGroupCreation() throws Exception {
         app.goTo().groupPage();
         List<GroupData> before = app.group().list();
-        GroupData group = new GroupData("test123", "test2", "test3");
+        GroupData group = new GroupData().withName("testName").withFooter("testFooter").withHeader("testHeader");
         app.group().create(group);
         List<GroupData> after = app.group().list();
         Assert.assertEquals(after.size(), before.size() + 1);
@@ -27,7 +27,7 @@ public class GroupCreationTest extends TestBase {
 //        }
 
 // находим и подставляем максимальный id в список с помощью лямбда-выражения
-        group.setId(after.stream().max(Comparator.comparingInt(GroupData::getId)).get().getId());
+        group.withId(after.stream().max(Comparator.comparingInt(GroupData::getId)).get().getId());
         before.add(group);
 
         // сравниваем множества
