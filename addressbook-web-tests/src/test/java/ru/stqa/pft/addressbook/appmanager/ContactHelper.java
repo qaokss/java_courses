@@ -75,10 +75,10 @@ public class ContactHelper extends HelperBase {
         List<ContactData> contacts = new ArrayList<>();
         List<WebElement> rows = wd.findElements(By.name("entry"));
         for (WebElement row : rows) {
-            String lastName = row.findElement(By.xpath("//td[2]")).getText();
-            String firstName = row.findElement(By.xpath("//td[3]")).getText();
-
+            String lastName = row.findElement(By.xpath("//td[3]")).getText();
+            String firstName = row.findElement(By.xpath("//td[2]")).getText();
             int id = Integer.parseInt(row.findElement(By.tagName("input")).getAttribute("value"));
+
             ContactData contact = new ContactData(id, lastName, firstName);
             contacts.add(contact);
         }
