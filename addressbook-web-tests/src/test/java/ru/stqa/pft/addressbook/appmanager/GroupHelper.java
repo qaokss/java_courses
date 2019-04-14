@@ -83,4 +83,12 @@ public class GroupHelper extends HelperBase {
         }
         return groups;
            }
+
+    public void modifyGroup(GroupData group, int lastGroup) {
+        selectGroup(lastGroup);
+        initGroupModification();
+        fillGroupForm(group);
+        submitGroupModification();
+        returnToGroupPage();
+    }
 }

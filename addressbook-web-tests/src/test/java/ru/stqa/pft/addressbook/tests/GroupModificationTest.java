@@ -1,6 +1,7 @@
 package ru.stqa.pft.addressbook.tests;
 
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.GroupData;
 
@@ -11,23 +12,25 @@ import java.util.List;
 
 public class GroupModificationTest extends TestBase {
 
-    @Test
-    public void testGroupModification() {
+    @BeforeMethod
+    public void ensurePreconditions() {
         app.getNavigationHelper().gotoGroupPage();
         if (!app.getGroupHelper().isThereAGroup()) {
             app.getGroupHelper().createGroup(new GroupData("test1", "qwe", "rty"));
         }
+    }
+
+    @Test
+    public void testGroupModification() {
         List<GroupData> before = app.getGroupHelper().getGroupList();
-        app.getGroupHelper().selectGroup(before.size() - 1);
-        app.getGroupHelper().initGroupModification();
-        GroupData group = new GroupData(before.get(before.size() - 1).getId(),"110", "test555", "test678");
-        app.getGroupHelper().fillGroupForm(group);
-        app.getGroupHelper().submitGroupModification();
-        app.getGroupHelper().returnToGroupPage();
+        GroupData group = new GroupData(before.get(before.size() - 1).getId(), "110", "test555", "test678");
+        int lastGroup = before.size() - 1;
+
+        app.getGroupHelper().modifyGroup(group, lastGroup);
         List<GroupData> after = app.getGroupHelper().getGroupList();
         Assert.assertEquals(after.size(), before.size());
 
-        before.remove(before.size() - 1);
+        before.remove(lastGroup);
         before.add(group);
 
 // сравнение отсортированных списков по id
@@ -40,4 +43,6 @@ public class GroupModificationTest extends TestBase {
 //        Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
 
     }
+
+
 }
