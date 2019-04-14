@@ -1,44 +1,26 @@
 package ru.stqa.pft.addressbook.tests;
 
-import org.testng.Assert;
+
 import org.testng.annotations.*;
 import ru.stqa.pft.addressbook.model.GroupData;
-import java.util.Set;
+import ru.stqa.pft.addressbook.model.Groups;
+
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class GroupCreationTest extends TestBase {
 
     @Test
     public void testGroupCreation() throws Exception {
         app.goTo().groupPage();
-        Set<GroupData> before = app.group().all();
+        Groups before = (Groups) app.group().all();
         GroupData group = new GroupData().withName("testName").withFooter("testFooter").withHeader("testHeader");
         app.group().create(group);
-        Set<GroupData> after = app.group().all();
-        Assert.assertEquals(after.size(), before.size() + 1);
-
-        // находим максимальный id в списке с помощью цикла
-//        int max = 0;
-//        for (GroupData g : after) {
-//            if (g.getId() > max) {
-//                max = g.getId();
-//            }
-//        }
-
-// находим и подставляем максимальный id в список с помощью лямбда-выражения
- //       group.withId(after.stream().max(Comparator.comparingInt(GroupData::getId)).get().getId());
-
-        // находим максимальный id с помощью анонимной функции
-        group.withId(after.stream().mapToInt( (g) -> g.getId()).max().getAsInt());
-
-        before.add(group);
-
-
-// сравниваем отсортированные списки
-//        Comparator<? super GroupData> byId = Comparator.comparingInt(GroupData::getId);
-//        before.sort(byId);
-//        after.sort(byId);
-
-        Assert.assertEquals(after, before);
+        Groups after = (Groups) app.group().all();
+        assertThat(after.size(), equalTo(before.size() + 1));
+        assertThat(after, equalTo(
+                before.withAdded(group.withId(after.stream().mapToInt( (g) -> g.getId()).max().getAsInt()))));
     }
 
 }
