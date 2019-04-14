@@ -31,13 +31,13 @@ public class GroupModificationTest extends TestBase {
         before.add(group);
 
 // сравнение отсортированных списков по id
-//        Comparator<? super GroupData> byId = Comparator.comparingInt(GroupData::getId);
-//        before.sort(byId);
-//        after.sort(byId);
-//        Assert.assertEquals(after, before);
+        Comparator<? super GroupData> byId = Comparator.comparingInt(GroupData::getId);
+        before.sort(byId);
+        after.sort(byId);
+        Assert.assertEquals(after, before);
 
 // сравниваем множества
-        Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
+//        Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
 
     }
 }
