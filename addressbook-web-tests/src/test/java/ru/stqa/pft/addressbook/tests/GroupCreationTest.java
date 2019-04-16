@@ -14,10 +14,10 @@ public class GroupCreationTest extends TestBase {
     @Test
     public void testGroupCreation() throws Exception {
         app.goTo().groupPage();
-        Groups before = (Groups) app.group().all();
+        Groups before = (Groups) app.group().allGroups();
         GroupData group = new GroupData().withName("testName").withFooter("testFooter").withHeader("testHeader");
         app.group().create(group);
-        Groups after = (Groups) app.group().all();
+        Groups after = (Groups) app.group().allGroups();
         assertThat(after.size(), equalTo(before.size() + 1));
         assertThat(after, equalTo(
                 before.withAdded(group.withId(after.stream().mapToInt( (g) -> g.getId()).max().getAsInt()))));

@@ -15,19 +15,19 @@ public class GroupModificationTest extends TestBase {
     @BeforeMethod
     public void ensurePreconditions() {
         app.goTo().groupPage();
-        if (app.group().all().size() == 0) {
+        if (app.group().allGroups().size() == 0) {
             app.group().create(new GroupData().withName("testName").withFooter("testFooter").withHeader("testHeader"));
         }
     }
 
     @Test
     public void testGroupModification() {
-        Groups before = app.group().all();
+        Groups before = app.group().allGroups();
         GroupData modifiedGroup = before.iterator().next();
         GroupData newGroup = new GroupData().
                 withId(modifiedGroup.getId()).withName("testName").withFooter("testFooter").withHeader("testHeader");
         app.group().modify(newGroup);
-        Groups after = app.group().all();
+        Groups after = app.group().allGroups();
         assertEquals(after.size(), before.size());
         assertThat(after, equalToObject(before.without(modifiedGroup).withAdded(newGroup)));
 

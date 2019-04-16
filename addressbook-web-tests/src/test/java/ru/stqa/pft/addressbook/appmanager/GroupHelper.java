@@ -92,7 +92,7 @@ public class GroupHelper extends HelperBase {
 
 
     // формируем список групп на странице
-    public Groups all() {
+    public Groups allGroups() {
         Groups groups = new Groups();
         List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
         for (WebElement element : elements) {
