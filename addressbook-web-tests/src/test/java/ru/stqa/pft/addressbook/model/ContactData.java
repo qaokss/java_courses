@@ -4,75 +4,83 @@ import java.util.Objects;
 
 public class ContactData {
     private int id;
-    private final String firstname;
-    private final String middlename;
-    private final String lastname;
-    private final String title;
-    private final String address;
-    private final String mobilephone;
-    private final String email1;
-    private final String homepage;
-    private final String birthdayDay;
-    private final String birthdayMonth;
-    private final String birthdayYear;
-    private final String group;
+    private String firstname;
+    private String middlename;
+    private String lastname;
+    private String title;
+    private String address;
+    private String mobilephone;
+    private String email1;
+    private String homepage;
+    private String birthdayDay;
+    private String birthdayMonth;
+    private String birthdayYear;
+    private String group;
 
 
-    public ContactData(int id, String firstname, String middlename, String lastname,  String title,
-                       String address, String mobilephone,
-                        String email1, String homepage, String birthdayDay,
-                       String birthdayMonth, String birthdayYear,
-                       String group) {
+    public ContactData withId(int id) {
         this.id = id;
-        this.firstname = firstname;
-        this.middlename = middlename;
-        this.lastname = lastname;
-        this.title = title;
-        this.address = address;
-        this.mobilephone = mobilephone;
-        this.email1 = email1;
-        this.homepage = homepage;
-        this.birthdayDay = birthdayDay;
-        this.birthdayMonth = birthdayMonth;
-        this.birthdayYear = birthdayYear;
-        this.group = group;
+        return this;
     }
 
-
-    public ContactData(String firstname, String middlename, String lastname,  String title,
-                       String address, String mobilephone,
-                       String email1, String homepage, String birthdayDay,
-                       String birthdayMonth, String birthdayYear,
-                       String group) {
-        this.id = Integer.MAX_VALUE;
+    public ContactData withFirstname(String firstname) {
         this.firstname = firstname;
-        this.middlename = middlename;
-        this.lastname = lastname;
-        this.title = title;
-        this.address = address;
-        this.mobilephone = mobilephone;
-        this.email1 = email1;
-        this.homepage = homepage;
-        this.birthdayDay = birthdayDay;
-        this.birthdayMonth = birthdayMonth;
-        this.birthdayYear = birthdayYear;
-        this.group = group;
+        return this;
     }
 
-    public ContactData(int id, String firstname, String lastname) {
-        this.id = id;
-        this.firstname = firstname;
-        this.middlename = null;
+    public ContactData withMiddlename(String middlename) {
+        this.middlename = middlename;
+        return this;
+    }
+
+    public ContactData withLastname(String lastname) {
         this.lastname = lastname;
-        this.title = null;
-        this.address = null;
-        this.mobilephone = null;
-        this.email1 = null;
-        this.homepage = null;
-        this.birthdayDay = null;
-        this.birthdayMonth = null;
-        this.birthdayYear = null;
-        this.group = null;
+        return this;
+    }
+
+    public ContactData withTitle(String title) {
+        this.title = title;
+        return this;
+    }
+
+    public ContactData withAddress(String address) {
+        this.address = address;
+        return this;
+    }
+
+    public ContactData withMobilephone(String mobilephone) {
+        this.mobilephone = mobilephone;
+        return this;
+    }
+
+    public ContactData withEmail1(String email1) {
+        this.email1 = email1;
+        return this;
+    }
+
+    public ContactData withHomepage(String homepage) {
+        this.homepage = homepage;
+        return this;
+    }
+
+    public ContactData withBirthdayDay(String birthdayDay) {
+        this.birthdayDay = birthdayDay;
+        return this;
+    }
+
+    public ContactData withBirthdayMonth(String birthdayMonth) {
+        this.birthdayMonth = birthdayMonth;
+        return this;
+    }
+
+    public ContactData withBirthdayYear(String birthdayYear) {
+        this.birthdayYear = birthdayYear;
+        return this;
+    }
+
+    public ContactData withGroup(String group) {
+        this.group = group;
+        return this;
     }
 
 
@@ -153,8 +161,5 @@ public class ContactData {
         return Objects.hash(id, firstname, lastname);
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 }
 
