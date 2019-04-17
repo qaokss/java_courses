@@ -41,8 +41,12 @@ public class ContactHelper extends HelperBase {
         click(By.xpath("(//input[@name='submit'])[2]"));
     }
 
-    public void initContactModification(int index) {
-        wd.findElements(By.xpath("//img[@alt='Edit']")).get(index).click();
+    public void initContactModification(int id) {
+        wd.findElement(By.xpath("//a[@href='edit.php?id=" + id + "']")).click();
+    }
+
+    public void chooseCheckboxById(int id) {
+        wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
     }
 
     public void returnToHomePage() {
@@ -52,14 +56,11 @@ public class ContactHelper extends HelperBase {
         click(By.linkText("home"));
     }
 
-
     public void submitContactModification() {
         click(By.xpath("(//input[@name='update'])[2]"));
     }
 
-    public void chooseCheckboxById(int id) {
-        wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
-    }
+
 
     public void initContactDeletion() {
         click(By.xpath("//input[@value='Delete']"));
@@ -73,8 +74,8 @@ public class ContactHelper extends HelperBase {
         return isElementPresent(By.name("selected[]"));
     }
 
-    public void createNew(ContactData contactData, boolean creation) {
-        fillNewContact(contactData, creation);
+    public void createNew(ContactData contact, boolean creation) {
+        fillNewContact(contact, creation);
         submitContactCreation();
         returnToHomePage();
     }
@@ -83,6 +84,13 @@ public class ContactHelper extends HelperBase {
         chooseCheckboxById(contact.getId());
         initContactDeletion();
         acceptAlert();
+        returnToHomePage();
+    }
+
+    public void modify(ContactData contact, boolean creation) {
+        initContactModification(contact.getId());
+        fillNewContact(contact, creation);
+        submitContactModification();
         returnToHomePage();
     }
 
