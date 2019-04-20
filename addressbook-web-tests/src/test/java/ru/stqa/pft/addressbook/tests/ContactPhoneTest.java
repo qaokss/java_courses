@@ -34,13 +34,16 @@ public class ContactPhoneTest extends TestBase {
         assertThat(contact.getAllPhones(), equalTo(mergePhones(contactInfoFromEditForm)));
     }
 
-    // метод склеивает имеющиеся значения телефонов
+    /**
+     * метод склеивает имеющиеся значения телефонов
+     */
     private String mergePhones(ContactData contact) {
        return Arrays.asList(contact.getHomePhone(), contact.getMobilePhone(), contact.getWorkPhone()).stream().
                 filter((s) -> ! s.equals("")).map(ContactPhoneTest::cleaned).collect(Collectors.joining("\n"));
     }
-
-    // метод очищает лишние символы, приводит в необходимый вид
+    /**
+     * метод очищает лишние символы, приводит в необходимый вид
+     */
     public static String cleaned(String phone) {
         return phone.replaceAll("\\s", "").replaceAll("[-()]", "");
     }
