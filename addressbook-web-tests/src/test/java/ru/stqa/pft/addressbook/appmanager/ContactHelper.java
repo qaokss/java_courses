@@ -23,9 +23,9 @@ public class ContactHelper extends HelperBase {
         type(By.name("lastname"), contactData.getLastname());
         type(By.name("title"), contactData.getTitle());
         type(By.name("address"), contactData.getAddress());
-        type(By.name("mobile"), contactData.getMobilephone());
-        type(By.name("work"), contactData.getWorkphone());
-        type(By.name("home"), contactData.getHomephone());
+        type(By.name("mobile"), contactData.getMobilePhone());
+        type(By.name("work"), contactData.getWorkPhone());
+        type(By.name("home"), contactData.getHomePhone());
         type(By.name("email"), contactData.getEmail1());
         type(By.name("homepage"), contactData.getHomepage());
         chooseDropDown(By.name("bday"), contactData.getBirthdayDay());
@@ -44,7 +44,7 @@ public class ContactHelper extends HelperBase {
     }
 
     public void initContactModification(int id) {
-//        wd.findElement(By.xpath("//a[@href='edit.php?id=" + id + "']")).click();
+        wd.findElement(By.xpath("//a[@href='edit.php?id=" + id + "']")).click();
 
 
          // Способы нахождения локаторов
@@ -111,10 +111,13 @@ public class ContactHelper extends HelperBase {
         Contacts contacts = new Contacts();
         List<WebElement> rows = wd.findElements(By.name("entry"));
         for (WebElement row : rows) {
-            String lastName = row.findElement(By.xpath(".//td[2]")).getText();
-            String firstName = row.findElement(By.xpath(".//td[3]")).getText();
-            int id = Integer.parseInt(row.findElement(By.tagName("input")).getAttribute("value"));
-            contacts.add(new ContactData().withId(id).withLastname(lastName).withFirstname(firstName));
+            List<WebElement> cells = row.findElements(By.tagName("td"));
+            int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("value"));
+            String lastName = cells.get(1).getText();
+            String firstName = cells.get(2).getText();
+            String[] phones = cells.get(5).getText().split("\n");
+            contacts.add(new ContactData().withId(id).withLastname(lastName).withFirstname(firstName).
+                    withHomePhone(phones[0]).withMobilePhone(phones[1]).withWorkPhone(phones[2]));
         }
         return contacts;
     }

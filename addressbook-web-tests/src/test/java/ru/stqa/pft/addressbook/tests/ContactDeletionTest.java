@@ -1,6 +1,5 @@
 package ru.stqa.pft.addressbook.tests;
 
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
@@ -21,8 +20,9 @@ public class ContactDeletionTest extends TestBase {
         if (app.contact().allContacts().size() == 0) {
             app.goTo().addContactPage();
             app.contact().createNew(new ContactData().withFirstname("TestFirtsName").withMiddlename("Middlename").
-                    withLastname("Lastname").withAddress("adr").withMobilephone("4654654").withEmail1("London@fg.tyh").
-                    withGroup("000"). withBirthdayDay("10").withBirthdayMonth("January").withBirthdayYear("2000"), true);
+                    withLastname("Lastname").withAddress("adr").withMobilePhone("4654654").withWorkPhone("66667898").
+                    withHomePhone("234523").withEmail1("London@fg.tyh").withGroup("000"). withBirthdayDay("10").
+                    withBirthdayMonth("January").withBirthdayYear("2000"), true);
         }
     }
 
