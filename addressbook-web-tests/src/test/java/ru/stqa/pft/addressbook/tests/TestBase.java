@@ -7,7 +7,12 @@ import ru.stqa.pft.addressbook.appmanager.ApplicationManager;
 
 public class TestBase {
 
-    protected static final ApplicationManager app = new ApplicationManager(BrowserType.CHROME);
+    /**
+     * Для запуска теста в необходимом браузере нужно в настройках конфигурации в поле VN options указать
+     * свойство  -Dbrowser=firefox. Если св-во не указано, то по дефолту будет запускаться в хроме
+     */
+    protected static final ApplicationManager app
+            = new ApplicationManager(System.getProperty("browser", BrowserType.CHROME));
 
     @BeforeSuite(alwaysRun = true)
     public void setUp() throws Exception {
