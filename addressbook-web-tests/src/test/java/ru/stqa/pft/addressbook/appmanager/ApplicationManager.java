@@ -30,8 +30,7 @@ public class ApplicationManager {
     }
 
     public void init() throws IOException {
-        String target = System.getProperty("fileWithProperties", "");
-        properties.load(new FileReader(new File(fileWithProperties, target)));
+        properties.load(new FileReader(new File(fileWithProperties)));
 
         if (browser.equals(BrowserType.FIREFOX)) {
             wd = new FirefoxDriver();
