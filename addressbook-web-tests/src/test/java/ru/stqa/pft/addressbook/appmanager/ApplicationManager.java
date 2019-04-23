@@ -20,16 +20,18 @@ public class ApplicationManager {
     private GroupHelper groupHelper;
     private ContactHelper contactHelper;
     private String browser;
+    private String fileWithProperties;
 
-    public ApplicationManager(String browser)  {
+    public ApplicationManager(String browser, String fileWithProperties)  {
         this.browser = browser;
         properties = new Properties();
+        this.fileWithProperties = fileWithProperties;
 
     }
 
     public void init() throws IOException {
-        String target = System.getProperty("target", "local");
-        properties.load(new FileReader(new File("src/test/resources/%s.properties", target)));
+        String target = System.getProperty("fileWithProperties", "");
+        properties.load(new FileReader(new File(fileWithProperties, target)));
 
         if (browser.equals(BrowserType.FIREFOX)) {
             wd = new FirefoxDriver();

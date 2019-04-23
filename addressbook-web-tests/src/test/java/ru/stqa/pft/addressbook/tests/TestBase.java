@@ -12,15 +12,16 @@ public class TestBase {
      * свойство  -Dbrowser=firefox. Если св-во не указано, то по дефолту будет запускаться в хроме
      */
     protected static final ApplicationManager app
-            = new ApplicationManager(System.getProperty("browser", BrowserType.CHROME));
+            = new ApplicationManager(System.getProperty("browser", BrowserType.CHROME),
+            System.getProperty("fileWithProperties", "src/test/resources/local.properties"));
 
     @BeforeSuite(alwaysRun = true)
     public void setUp() throws Exception {
         app.init();
     }
 
-    @AfterSuite (alwaysRun = true)
-    public void tearDown() throws Exception {
+    @AfterSuite(alwaysRun = true)
+    public void tearDown() {
         app.stop();
     }
 
