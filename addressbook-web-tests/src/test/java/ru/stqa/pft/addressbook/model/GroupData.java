@@ -31,6 +31,13 @@ public class GroupData {
     @Type(type = "text")
     private String header;
 
+    @Expose
+    @Column(name = "group_footer")
+    @Type(type = "text")
+    private String footer;
+
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -47,10 +54,7 @@ public class GroupData {
         return Objects.hash(id, name, header, footer);
     }
 
-    @Expose
-    @Column(name = "group_footer")
-    @Type(type = "text")
-    private String footer;
+
 
 
 

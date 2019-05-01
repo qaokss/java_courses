@@ -40,11 +40,11 @@ public class ContactCreationTest extends TestBase {
     @Test (dataProvider = "validContactsFromJson")
     public void testContactCreation(ContactData contact) throws Exception {
         app.goTo().homePage();
-        Contacts before = app.contact().allContacts();
+        Contacts before = app.db().contacts();
         app.goTo().addContactPage();
         File photo = new File("src/test/resources/inner.jpg");
         app.contact().createNew(contact.withPhoto(photo), true);
-        Contacts after = app.contact().allContacts();
+        Contacts after = app.db().contacts();
         assertEquals(after.size(), before.size() + 1);
         assertThat(after,
                 equalTo(before.withAdded(contact.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
