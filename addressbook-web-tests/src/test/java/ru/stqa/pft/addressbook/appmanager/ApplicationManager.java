@@ -21,8 +21,9 @@ public class ApplicationManager {
     private ContactHelper contactHelper;
     private String browser;
     private String fileWithProperties;
+    private DbHelper dbHelper;
 
-    public ApplicationManager(String browser, String fileWithProperties)  {
+    public ApplicationManager(String browser, String fileWithProperties) {
         this.browser = browser;
         properties = new Properties();
         this.fileWithProperties = fileWithProperties;
@@ -31,6 +32,9 @@ public class ApplicationManager {
 
     public void init() throws IOException {
         properties.load(new FileReader(new File(fileWithProperties)));
+
+        dbHelper = new DbHelper();
+
 
         if (browser.equals(BrowserType.FIREFOX)) {
             wd = new FirefoxDriver();
@@ -68,4 +72,9 @@ public class ApplicationManager {
     public ContactHelper contact() {
         return contactHelper;
     }
+
+    public DbHelper db() {
+        return dbHelper;
+    }
+
 }
