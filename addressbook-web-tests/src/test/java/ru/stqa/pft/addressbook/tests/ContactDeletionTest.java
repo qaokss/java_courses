@@ -17,23 +17,34 @@ public class ContactDeletionTest extends TestBase {
     public void EnsurePreconditions() {
         app.goTo().homePage();
         // если на странице нет ни одного созданного контакта - создаём его
-        if (app.contact().allContacts().size() == 0) {
+        if (app.db().contacts().size() == 0) {
             app.goTo().addContactPage();
             app.contact().createNew(new ContactData().withFirstname("TestFirtsName").withMiddlename("Middlename").
                     withLastname("Lastname").withAddress("adr").withMobilePhone("4654654").withWorkPhone("66667898").
-                    withHomePhone("234523").withEmail1("London@fg.tyh").withGroup("000"). withBirthdayDay("10").
+                    withHomePhone("234523").withEmail1("London@fg.tyh").withGroup("000").withBirthdayDay("10").
                     withBirthdayMonth("January").withBirthdayYear("2000"), true);
         }
     }
 
-
+    /**
+     * Тест проверяет корректность удаления контакта
+     */
     @Test
     public void testContactDeletion() {
-        Contacts before = app.contact().allContacts();
+        logger.info("Формируется список контактов до удаления");
+        Contacts before = app.db().contacts();
         ContactData deletedContact = before.iterator().next();
+
+        logger.info("Происходит удаление контакта");
         app.contact().delete(deletedContact);
-        Contacts after = app.contact().allContacts();
+
+        logger.info("Формируется список контактов после удаления");
+        Contacts after = app.db().contacts();
+
+        logger.info("Сравнивается кол-во контактов до и после удаления");
         assertEquals(after.size(), before.size() - 1);
+
+        logger.info("Сравнивается список контактов до и после удаления");
         assertThat(after, equalToObject(before.without(deletedContact)));
 
 

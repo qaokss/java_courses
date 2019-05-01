@@ -30,9 +30,13 @@ public class ContactPhoneTest extends TestBase {
     @Test
     public void testContactPhone() {
         app.goTo().homePage();
+        logger.info("Формируется список контактов на главной странице");
         ContactData contact = app.contact().allContacts().iterator().next();
+
+        logger.info("Осуществляется переход на форму редактирования контакта и собирается информация на форме редактирования");
         ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
 
+        logger.info("Сравнивается инфа на главной странице с инфой на странице редактирования");
         assertThat(contact.getAllPhones(), equalTo(mergePhones(contactInfoFromEditForm)));
     }
 
@@ -41,7 +45,7 @@ public class ContactPhoneTest extends TestBase {
      */
     private String mergePhones(ContactData contact) {
        return Arrays.asList(contact.getHomePhone(), contact.getMobilePhone(), contact.getWorkPhone()).stream().
-                filter((s) -> ! s.equals("")).map(ContactPhoneTest::cleaned).collect(Collectors.joining("\n"));
+                filter((String s) -> ! s.equals("")).map(ContactPhoneTest::cleaned).collect(Collectors.joining("\n"));
     }
     /**
      * метод очищает лишние символы, приводит в необходимый вид
