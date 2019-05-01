@@ -13,7 +13,7 @@ public class ContactAddressTest extends TestBase {
     public void EnsurePreconditions() {
         app.goTo().homePage();
         // если на странице нет ни одного созданного контакта - создаём его
-        if (app.contact().allContacts().size() == 0) {
+        if (app.db().contacts().size() == 0) {
             app.goTo().addContactPage();
             app.contact().createNew(new ContactData().withFirstname("TestFirtsName").withMiddlename("Middlename").
                     withLastname("Lastname").withAddress("adr, 66-88 Avenue/Srt.house").withMobilePhone("4654654").withEmail1("London@fg.tyh").
@@ -21,11 +21,20 @@ public class ContactAddressTest extends TestBase {
         }
     }
 
+    /**
+     * Тест проверяет соответствие адреса контакта на главной странице в сравнении с формой редактирования контакта
+     */
     @Test
     public void testContactAddress() {
         app.goTo().homePage();
+
+        logger.info("Формируется список контактов на главной странице");
         ContactData contact = app.contact().allContacts().iterator().next();
+
+        logger.info("Осуществляется переход на форму редактирования контакта и собирается информация на форме редактирования");
         ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
+
+        logger.info("Сравнивается инфа на главной странице с инфой на странице редактирования");
         assertThat(contact.getAddress(), equalTo(contactInfoFromEditForm.getAddress()));
 
     }
