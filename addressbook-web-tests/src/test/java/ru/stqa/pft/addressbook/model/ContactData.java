@@ -2,7 +2,6 @@ package ru.stqa.pft.addressbook.model;
 
 import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
-import org.hibernate.annotations.ManyToAny;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
@@ -100,9 +99,9 @@ public class ContactData {
     private Set<GroupData> groups = new HashSet<GroupData>();
 
     @Expose
-    @Column(name = "photo")
+    @Column(name = "photoPath")
     @Type(type = "text")
-    private String photo;
+    private String photoPath;
 
 
     public ContactData withId(int id) {
@@ -200,14 +199,10 @@ public class ContactData {
 
 
     public ContactData withPhoto(File photo) {
-        this.photo = photo.getPath();
+        this.photoPath = photo.getPath();
         return this;
     }
 
-    public ContactData withGroup(Groups groups) {
-        this.groups = groups;
-        return this;
-    }
 
     public String getFirstname() {
         return firstname;
@@ -286,17 +281,11 @@ public class ContactData {
         return new Groups(groups);
     }
 
-    public File getPhoto() {
-        return new File(photo);
-    }
-
-    @Override
-    public String toString() {
-        return "ContactData{" +
-                "id=" + id +
-                ", firstname='" + firstname + '\'' +
-                ", lastname='" + lastname + '\'' +
-                '}';
+    public File getPhotoPath() {
+        if (photoPath != null) {
+            return new File(photoPath);
+        }
+        return null;
     }
 
     @Override
@@ -318,6 +307,16 @@ public class ContactData {
                 Objects.equals(birthdayDay, that.birthdayDay) &&
                 Objects.equals(birthdayMonth, that.birthdayMonth) &&
                 Objects.equals(birthdayYear, that.birthdayYear);
+    }
+
+    @Override
+    public String toString() {
+        return "ContactData{" +
+                "id=" + id +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", groups=" + groups +
+                '}';
     }
 
     @Override
