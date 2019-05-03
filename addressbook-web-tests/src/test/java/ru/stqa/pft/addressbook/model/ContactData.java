@@ -99,7 +99,7 @@ public class ContactData {
     private Set<GroupData> groups = new HashSet<GroupData>();
 
     @Expose
-    @Column(name = "photoPath")
+    @Column(name = "photo")
     @Type(type = "text")
     private String photoPath;
 
