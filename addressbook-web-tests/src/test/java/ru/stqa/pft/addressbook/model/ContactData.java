@@ -34,7 +34,8 @@ public class ContactData {
     private String title;
 
     @Expose
-    @Transient
+    @Column(name = "address")
+    @Type(type = "text")
     private String address;
 
     @Expose
@@ -57,15 +58,18 @@ public class ContactData {
 
 
     @Expose
-    @Transient
+    @Column(name = "email")
+    @Type(type = "text")
     private String email1;
 
     @Expose
-    @Transient
+    @Column(name = "email2")
+    @Type(type = "text")
     private String email2;
 
     @Expose
-    @Transient
+    @Column(name = "email3")
+    @Type(type = "text")
     private String email3;
 
     @Transient
@@ -76,15 +80,15 @@ public class ContactData {
     private String homepage;
 
     @Expose
-    @Transient
+    @Column(name = "bday", columnDefinition = "TINYINT")
     private String birthdayDay;
 
     @Expose
-    @Transient
+    @Column(name = "bmonth", columnDefinition = "varchar")
     private String birthdayMonth;
 
     @Expose
-    @Transient
+    @Column(name = "byear", columnDefinition = "longvarchar")
     private String birthdayYear;
 
     @Expose
@@ -289,7 +293,6 @@ public class ContactData {
                 ", lastname='" + lastname + '\'' +
                 '}';
     }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -299,15 +302,21 @@ public class ContactData {
                 Objects.equals(firstname, that.firstname) &&
                 Objects.equals(middlename, that.middlename) &&
                 Objects.equals(lastname, that.lastname) &&
+                Objects.equals(address, that.address) &&
                 Objects.equals(mobilephone, that.mobilephone) &&
                 Objects.equals(homephone, that.homephone) &&
-                Objects.equals(workphone, that.workphone);
+                Objects.equals(workphone, that.workphone) &&
+                Objects.equals(email1, that.email1) &&
+                Objects.equals(email2, that.email2) &&
+                Objects.equals(email3, that.email3) &&
+                Objects.equals(birthdayDay, that.birthdayDay) &&
+                Objects.equals(birthdayMonth, that.birthdayMonth) &&
+                Objects.equals(birthdayYear, that.birthdayYear);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstname, middlename, lastname, mobilephone, homephone, workphone);
+        return Objects.hash(id, firstname, middlename, lastname, address, mobilephone, homephone, workphone, email1, email2, email3, birthdayDay, birthdayMonth, birthdayYear);
     }
-
 }
 
