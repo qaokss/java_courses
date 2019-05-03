@@ -161,4 +161,8 @@ public class ContactHelper extends HelperBase {
 
     }
 
+    public void removeContactFromGroup(ContactData contact) {
+        chooseCheckboxById(contact.getId());
+        click(By.name("remove"));
+    }
 }

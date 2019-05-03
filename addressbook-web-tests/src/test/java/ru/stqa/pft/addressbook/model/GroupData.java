@@ -35,10 +35,8 @@ public class GroupData {
     @Type(type = "text")
     private String footer;
 
-    @ManyToMany(mappedBy = "groups")
+    @ManyToMany(mappedBy = "groups", fetch = FetchType.EAGER)
     private Set<ContactData> contacts = new HashSet<>();
-
-
 
 
 
@@ -54,9 +52,7 @@ public class GroupData {
         return footer;
     }
 
-    public int getId() {
-        return id;
-    }
+    public int getId() { return id; }
 
 
     public Set<ContactData> getContacts() {
