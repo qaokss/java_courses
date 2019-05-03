@@ -36,6 +36,8 @@ public class GroupDeletionTest extends TestBase {
 
         logger.info("Сравнивается список групп до и после удаления");
         assertThat(after, equalToObject(before.without(deletedGroup)));
+
+        verifyGroupListInUI();
     }
 
 

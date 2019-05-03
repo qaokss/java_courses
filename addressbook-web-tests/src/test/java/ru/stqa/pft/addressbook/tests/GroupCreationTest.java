@@ -81,6 +81,8 @@ public class GroupCreationTest extends TestBase {
         logger.info("Сравнивается список групп до и после создания");
         assertThat(after, equalTo(
                 before.withAdded(group.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
+
+        verifyGroupListInUI();
     }
 
     /**

@@ -68,6 +68,10 @@ public class GroupModificationTest extends TestBase {
         logger.info("Сравнивается список групп до и после модификации");
         assertThat(after, equalToObject(before.without(modifiedGroup).withAdded(newGroup)));
 
+        verifyGroupListInUI();
+
     }
+
+
 
 }
