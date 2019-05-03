@@ -19,8 +19,8 @@ public class ContactEmailTest extends TestBase {
         if (app.db().contacts().size() == 0) {
             app.goTo().addContactPage();
             app.contact().createNew(new ContactData().withFirstname("TestFirtsName").withMiddlename("Middlename").
-                    withLastname("Lastname").withAddress("adr").withMobilePhone("4654654").withEmail1("London@fg.tyh").
-                    withGroup("000").withBirthdayDay("10").withBirthdayMonth("January").withBirthdayYear("2000"), true);
+                    withLastname("Lastname").withAddress("adr").withMobilePhone("4654654").withEmail1("London@fg.tyh")
+                    .withBirthdayDay("10").withBirthdayMonth("January").withBirthdayYear("2000"), true);
         }
     }
     /**

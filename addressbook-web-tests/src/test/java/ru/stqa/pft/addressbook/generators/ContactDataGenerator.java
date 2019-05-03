@@ -82,7 +82,7 @@ public class ContactDataGenerator {
                     .withTitle(String.format("title%s", i)).withAddress(String.format("Moscow, The Main Str %s", i))
                     .withBirthdayDay("15").withBirthdayMonth("July").withBirthdayYear("1999")
                     .withEmail1(String.format("email1@.qq.ee%s", i)).withEmail2(String.format("email2@.qq.ee%s", i))
-                    .withEmail3(String.format("email3@.qq.ee%s", i)).withGroup("000"));
+                    .withEmail3(String.format("email3@.qq.ee%s", i)));
         }
         return contacts;
     }
