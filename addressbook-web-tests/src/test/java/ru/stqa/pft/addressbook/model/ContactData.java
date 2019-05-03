@@ -204,7 +204,7 @@ public class ContactData {
         return this;
     }
 
-    public ContactData withGroup(Groups groups){
+    public ContactData withGroup(Groups groups) {
         this.groups = groups;
         return this;
     }
@@ -323,6 +323,11 @@ public class ContactData {
     @Override
     public int hashCode() {
         return Objects.hash(id, firstname, middlename, lastname, address, mobilephone, homephone, workphone, email1, email2, email3, birthdayDay, birthdayMonth, birthdayYear);
+    }
+
+    public ContactData inGroup(GroupData group) {
+        groups.add(group);
+        return this;
     }
 }
 

@@ -35,10 +35,12 @@ public class ContactHelper extends HelperBase {
         chooseDropDown(By.name("bmonth"), contactData.getBirthdayMonth());
         type(By.name("byear"), contactData.getBirthdayYear());
         if (creation) {
-            new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
-            chooseDropDown(By.name("new_group"), contactData.getGroup());
-        } else Assert.assertFalse(isElementPresent(By.name("new_group")));
-
+            if (contactData.getGroups().size() > 0) {
+                Assert.assertTrue(contactData.getGroups().size() == 1);
+                new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroups().iterator().next().getName());
+                chooseDropDown(By.name("new_group"), contactData.getGroups().iterator().next().getName());
+            } else Assert.assertFalse(isElementPresent(By.name("new_group")));
+        }
     }
 
 
