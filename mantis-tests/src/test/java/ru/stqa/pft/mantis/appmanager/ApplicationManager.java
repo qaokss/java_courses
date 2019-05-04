@@ -31,7 +31,6 @@ public class ApplicationManager {
         properties.load(new FileReader(new File(fileWithProperties)));
 
 
-
         if (browser.equals(BrowserType.FIREFOX)) {
             wd = new FirefoxDriver();
 
@@ -53,5 +52,12 @@ public class ApplicationManager {
     }
 
 
+    public HttpSession newSession() {
+        return new HttpSession(this);
+    }
+
+    public String getProperty(String key) {
+        return properties.getProperty(key);
+    }
 
 }
