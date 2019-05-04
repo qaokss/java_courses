@@ -14,10 +14,11 @@ import java.util.concurrent.TimeUnit;
 
 public class ApplicationManager {
 
-    public WebDriver wd;
+    private WebDriver wd;
     private final Properties properties;
     private String browser;
     private String fileWithProperties;
+    private RegistrationHelper registraionHelper;
 
 
     public ApplicationManager(String browser, String fileWithProperties) {
@@ -31,24 +32,14 @@ public class ApplicationManager {
         properties.load(new FileReader(new File(fileWithProperties)));
 
 
-        if (browser.equals(BrowserType.FIREFOX)) {
-            wd = new FirefoxDriver();
-
-        } else if (browser.equals(BrowserType.CHROME)) {
-            wd = new ChromeDriver();
-
-        } else if (browser.equals(BrowserType.IE)) {
-            wd = new InternetExplorerDriver();
-        }
-
-        wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
-        wd.get(properties.getProperty("web.baseUrl")); // берём адресс стенда из файла .properties
-
     }
 
 
     public void stop() {
-        wd.quit();
+        if (wd != null) {
+            wd.quit();
+
+        }
     }
 
 
@@ -60,4 +51,36 @@ public class ApplicationManager {
         return properties.getProperty(key);
     }
 
+
+    public RegistrationHelper registration() {
+        if (registraionHelper == null) {
+            registraionHelper = new RegistrationHelper(this);
+        }
+        return registraionHelper;
+    }
+
+
+    /**
+     * Используется шаблон проектирования "ленивая инициализация"
+     * Драйвер браузера будет инициализирован (вызван) только тогда, когда к нему кто-то обратится
+     */
+    public WebDriver getDriver() {
+        if (wd == null) {
+
+            if (browser.equals(BrowserType.FIREFOX)) {
+                wd = new FirefoxDriver();
+
+            } else if (browser.equals(BrowserType.CHROME)) {
+                wd = new ChromeDriver();
+
+            } else if (browser.equals(BrowserType.IE)) {
+                wd = new InternetExplorerDriver();
+            }
+
+            wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+            wd.get(properties.getProperty("web.baseUrl")); // берём адресс стенда из файла .properties
+
+        }
+        return wd;
+    }
 }
