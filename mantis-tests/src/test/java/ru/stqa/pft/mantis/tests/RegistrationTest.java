@@ -13,11 +13,11 @@ import static org.testng.Assert.assertTrue;
 
 public class RegistrationTest extends TestBase {
 
-    @BeforeMethod
-    public void startMailServer() {
-        //запуск почтового сервера перед тестом
-        app.mail().start();
-    }
+//    @BeforeMethod
+//    public void startMailServer() {
+//        //запуск почтового сервера перед тестом
+//        app.mail().start();
+//    }
 
 
     @Test
@@ -27,13 +27,15 @@ public class RegistrationTest extends TestBase {
         String password = "password";
         String email = String.format("user%s@localhost.localdomain", now);
 
+        app.james().createUser(username, password);
 
         logger.info("Ввод регистрационных данных, нажатие 'Зарегистрироваться'");
         app.registration().start(username, email);
 
         logger.info("Ожидание писем для подтверждения регистрации");
-        List<MailMessage> mailMessages = app.mail().waitForMail(2, 10000);
+        //   List<MailMessage> mailMessages = app.mail().waitForMail(2, 10000); //письмо из встроенного почтового сервера
 
+        List<MailMessage> mailMessages = app.james().waitForMail(username, password, 60000);
         String confirmationLink = app.mail().findConfirmationLink(mailMessages, email);
 
         logger.info("Письмо получено, завершение регистрации");
@@ -45,9 +47,9 @@ public class RegistrationTest extends TestBase {
     }
 
 
-    @AfterMethod(alwaysRun = true)
-    public void stopMailServer() {
-        //остановка почтового сервера после теста
-        app.mail().stop();
-    }
+//   @AfterMethod(alwaysRun = true)
+//    public void stopMailServer() {
+//        //остановка почтового сервера после теста
+//        app.mail().stop();
+//    }
 }
