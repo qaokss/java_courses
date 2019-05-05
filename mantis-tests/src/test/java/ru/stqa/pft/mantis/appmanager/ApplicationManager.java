@@ -18,7 +18,9 @@ public class ApplicationManager {
     private final Properties properties;
     private String browser;
     private String fileWithProperties;
-    private RegistrationHelper registraionHelper;
+    private RegistrationHelper registrationHelper;
+    private FtpHelper ftp;
+    private MailHelper mailHelper;
 
 
     public ApplicationManager(String browser, String fileWithProperties) {
@@ -53,12 +55,20 @@ public class ApplicationManager {
 
 
     public RegistrationHelper registration() {
-        if (registraionHelper == null) {
-            registraionHelper = new RegistrationHelper(this);
+        if (registrationHelper == null) {
+            registrationHelper = new RegistrationHelper(this);
         }
-        return registraionHelper;
+        return registrationHelper;
     }
 
+
+
+    public FtpHelper ftp() {
+        if (ftp == null) {
+            ftp =  new FtpHelper(this);
+        }
+        return ftp;
+    }
 
     /**
      * Используется шаблон проектирования "ленивая инициализация"
@@ -82,5 +92,12 @@ public class ApplicationManager {
 
         }
         return wd;
+    }
+
+    public MailHelper mail() {
+        if (mailHelper == null) {
+            mailHelper = new MailHelper(this);
+        }
+        return mailHelper;
     }
 }
