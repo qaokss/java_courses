@@ -60,7 +60,7 @@ public class JamesHelper {
     /**
      * Вспомогательный метод для соединения с почтовым сервером под привелигированным пользователем
      */
-    private void initTelnetSession() {
+    public void initTelnetSession() {
         mailserver = app.getProperty("mailserver.host");
         int port = Integer.parseInt(app.getProperty("mailserver.port"));
         String login = app.getProperty("mailserver.adminlogin");
@@ -76,13 +76,13 @@ public class JamesHelper {
             e.printStackTrace();
         }
 
-        // Don't know why it doesn't allow login at the first attempt
+        // Don't know why it doesn't allow loginAsAdmin at the first attempt
         readUntil("Login id:");
         write("");
         readUntil("Password:");
         write("");
 
-        // Second login attempt, must be successful
+        // Second loginAsAdmin attempt, must be successful
         readUntil("Login id:");
         write(login);
         readUntil("Password:");

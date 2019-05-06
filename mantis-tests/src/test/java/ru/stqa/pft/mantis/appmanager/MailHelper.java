@@ -16,6 +16,10 @@ public class MailHelper {
     private final Wiser wiser;
 
     public MailHelper(ApplicationManager app) {
+
+        /**
+         * Помощник для получения почты на локальный сервер
+         */
         this.app = app;
         wiser = new Wiser();
     }

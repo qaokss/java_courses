@@ -9,7 +9,9 @@ import java.io.IOException;
 
 
 public class FtpHelper {
-
+    /**
+     * помощник для отправки файлов по FTP протоколу
+     */
     private final ApplicationManager app;
     private FTPClient ftp;
 

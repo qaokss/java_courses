@@ -22,6 +22,8 @@ public class ApplicationManager {
     private FtpHelper ftp;
     private MailHelper mailHelper;
     private JamesHelper jamesHelper;
+    private NavigationHelper navigationHelper;
+    private ActionHelper actionHelper;
 
 
     public ApplicationManager(String browser, String fileWithProperties) {
@@ -108,5 +110,17 @@ public class ApplicationManager {
         }
         return jamesHelper;
     }
+
+    public NavigationHelper goTo() {
+        if (navigationHelper == null) {
+            navigationHelper = new NavigationHelper(this);
+        }
+        return navigationHelper;    }
+
+    public ActionHelper doAction() {
+        if (actionHelper == null) {
+            actionHelper = new ActionHelper(this);
+        }
+        return actionHelper;    }
 
 }
