@@ -24,6 +24,7 @@ public class ApplicationManager {
     private JamesHelper jamesHelper;
     private NavigationHelper navigationHelper;
     private ActionHelper actionHelper;
+    private SoapHelper soap;
 
 
     public ApplicationManager(String browser, String fileWithProperties) {
@@ -123,4 +124,9 @@ public class ApplicationManager {
         }
         return actionHelper;    }
 
+    public SoapHelper soap() {
+        if (soap == null) {
+            soap = new SoapHelper(this);
+        }
+        return soap;    }
 }
