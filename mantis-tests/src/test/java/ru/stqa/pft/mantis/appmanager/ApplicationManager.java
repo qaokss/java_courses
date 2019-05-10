@@ -25,6 +25,7 @@ public class ApplicationManager {
     private NavigationHelper navigationHelper;
     private ActionHelper actionHelper;
     private SoapHelper soap;
+    private DBHelper db;
 
 
     public ApplicationManager(String browser, String fileWithProperties) {
@@ -66,10 +67,9 @@ public class ApplicationManager {
     }
 
 
-
     public FtpHelper ftp() {
         if (ftp == null) {
-            ftp =  new FtpHelper(this);
+            ftp = new FtpHelper(this);
         }
         return ftp;
     }
@@ -116,17 +116,27 @@ public class ApplicationManager {
         if (navigationHelper == null) {
             navigationHelper = new NavigationHelper(this);
         }
-        return navigationHelper;    }
+        return navigationHelper;
+    }
 
     public ActionHelper doAction() {
         if (actionHelper == null) {
             actionHelper = new ActionHelper(this);
         }
-        return actionHelper;    }
+        return actionHelper;
+    }
 
     public SoapHelper soap() {
         if (soap == null) {
             soap = new SoapHelper(this);
         }
-        return soap;    }
+        return soap;
+    }
+
+    public DBHelper db() {
+        if (db == null) {
+            db = new DBHelper(this);
+        }
+        return db;
+    }
 }

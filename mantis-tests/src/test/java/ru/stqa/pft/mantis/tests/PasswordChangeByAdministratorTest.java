@@ -1,7 +1,10 @@
 package ru.stqa.pft.mantis.tests;
 
+import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 import ru.stqa.pft.mantis.model.MailMessage;
+import ru.stqa.pft.mantis.model.UserData;
+import ru.stqa.pft.mantis.model.Users;
 
 import javax.mail.MessagingException;
 import java.io.IOException;
@@ -15,33 +18,33 @@ public class PasswordChangeByAdministratorTest extends TestBase {
 
     @Test
     public void testPasswordChangeByAdministrator() throws MessagingException, IOException {
-        String usernameWithResetedPassword = "";
-        String password = "password";
+        Users users = app.db().users();
+        UserData selectedUser = users.iterator().next();
 
         logger.info("Авторизация под администратором");
         app.goTo().loginPage();
         app.doAction().loginAsAdmin();
 
         logger.info("Переход на страницу изменений сведений пользователю и сброс пароля");
+
         app.goTo().editUserPage();
+        app.doAction().choiseUser(selectedUser);
 
-        app.james().initTelnetSession();
+        app.doAction().resetPassword();
 
-        usernameWithResetedPassword = app.doAction().resetPassword();
-        String email = String.format("%s@localhost.localdomain", usernameWithResetedPassword);
 
         logger.info("Ожидание писем для подтверждения регистрации");
-//        app.james().createUser(usernameWithResetedPassword, password);
 
-        List<MailMessage> mailMessages = app.james().waitForMail(usernameWithResetedPassword, password, 30000);
-        String confirmationLink = app.mail().findConfirmationLink(mailMessages, email);
+        List<MailMessage> mailMessages = app.mail().waitForMail(1, 10000);
+        String confirmationLink = app.mail().findConfirmationLink(mailMessages, selectedUser.getEmail());
+        String newpassword = "newpassword";
 
 
         logger.info("Письмо получено, завершение регистрации");
-        app.registration().finish(confirmationLink, password);
+        app.registration().finish(confirmationLink, newpassword);
 
         logger.info("Регистрация завершена, проверка возможности логина под новым пользователем");
-        assertTrue(app.newSession().login(usernameWithResetedPassword, password));
+        assertTrue(app.newSession().login(selectedUser.getUsername(), newpassword));
 
     }
 
