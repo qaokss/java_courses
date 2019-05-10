@@ -13,7 +13,7 @@ import java.util.Set;
 
 import static org.testng.Assert.assertEquals;
 
-public class RestAssuredTests {
+public class RestAssuredTests extends TestBase{
 
 
 
@@ -28,6 +28,7 @@ public class RestAssuredTests {
      */
     @Test
     public void testCreateIssue() throws IOException {
+        skipIfNotFixed(1259);
         Set<Issue> oldIssues = getIssues();
         Issue newIssue = new Issue().withSubject("piuPiu Tessst11").withDescription("piu piu description11");
         int issueId = createIssue(newIssue);
@@ -38,35 +39,7 @@ public class RestAssuredTests {
 
     }
 
-    /**
-     * Метод получает список багрепортов в формате json с помощью GET запроса
-     *
-     * @return множестсво объектов типа Issue
-     */
-    private Set<Issue> getIssues() throws IOException {
-        String json = RestAssured.get("http://bugify.stqa.ru/api/issues.json").asString();
-        JsonElement parsed = new JsonParser().parse(json);
-        JsonElement issues = parsed.getAsJsonObject().get("issues");
-        return new Gson().fromJson(issues, new TypeToken<Set<Issue>>() {
-        }.getType());
-    }
 
-
-
-    /**
-     * Метод создаёт новый багрепорт с помощью POST запроса
-     *
-     * @return id созданного багрепорт
-     */
-    private int createIssue(Issue newIssue) throws IOException {
-        String json = RestAssured.given()
-                .params("subject", newIssue.getSubject())
-                .params("description", newIssue.getDescription())
-                .post("http://bugify.stqa.ru/api/issues.json").asString();
-        JsonElement parsed = new JsonParser().parse(json);
-        return parsed.getAsJsonObject().get("issue_id").getAsInt();
-
-    }
 
 }
 
