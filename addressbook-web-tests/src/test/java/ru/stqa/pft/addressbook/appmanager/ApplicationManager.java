@@ -1,5 +1,6 @@
 package ru.stqa.pft.addressbook.appmanager;
 
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -39,6 +40,7 @@ public class ApplicationManager {
 
         dbHelper = new DbHelper();
 
+        // локальная инициализация
         // Если значение настройки selenium.server в .properties не установлено, то используется стандартная инициализация
         if ("".equals(properties.getProperty("selenium.server"))) {
 
@@ -51,10 +53,13 @@ public class ApplicationManager {
             } else if (browser.equals(BrowserType.IE)) {
                 wd = new InternetExplorerDriver();
             }
+
+            // удалённая инициализация
             // если мы хотим использовать удалённый сервер, то используем другой тип драйвера
         } else {
             DesiredCapabilities capabilities = new DesiredCapabilities();
             capabilities.setBrowserName(browser);
+            capabilities.setPlatform(Platform.fromString(System.getProperty("platform", "win7")));
             wd = new RemoteWebDriver(new URL(properties.getProperty("selenium.server")), capabilities);
         }
 
