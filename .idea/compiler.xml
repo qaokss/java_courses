@@ -14,6 +14,8 @@
       <module name="sandbox_test" target="1.8" />
       <module name="soup-sample_main" target="1.8" />
       <module name="soup-sample_test" target="1.8" />
+      <module name="test-task_main" target="1.8" />
+      <module name="test-task_test" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

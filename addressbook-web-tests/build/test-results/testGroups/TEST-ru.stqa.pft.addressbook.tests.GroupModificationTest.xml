@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="ru.stqa.pft.addressbook.tests.GroupModificationTest" tests="3" skipped="1" failures="2" errors="0" timestamp="2019-05-12T20:44:19" hostname="Admin-ПК" time="2.643">
+<testsuite name="ru.stqa.pft.addressbook.tests.GroupModificationTest" tests="3" skipped="1" failures="2" errors="0" timestamp="2019-05-13T16:54:24" hostname="Admin-ПК" time="2.794">
   <properties/>
-  <testcase name="setUp" classname="ru.stqa.pft.addressbook.tests.GroupModificationTest" time="2.628">
+  <testcase name="setUp" classname="ru.stqa.pft.addressbook.tests.GroupModificationTest" time="2.775">
     <failure message="org.hibernate.service.spi.ServiceException: Unable to create requested service [org.hibernate.engine.jdbc.env.spi.JdbcEnvironment]" type="org.hibernate.service.spi.ServiceException">org.hibernate.service.spi.ServiceException: Unable to create requested service [org.hibernate.engine.jdbc.env.spi.JdbcEnvironment]
 	at org.hibernate.service.internal.AbstractServiceRegistryImpl.createService(AbstractServiceRegistryImpl.java:275)
 	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:237)
@@ -130,7 +130,7 @@ Caused by: java.net.ConnectException: Connection refused: connect
   <testcase name="testGroupModificationDB" classname="ru.stqa.pft.addressbook.tests.GroupModificationTest" time="0.0">
     <skipped/>
   </testcase>
-  <testcase name="tearDown" classname="ru.stqa.pft.addressbook.tests.GroupModificationTest" time="0.001">
+  <testcase name="tearDown" classname="ru.stqa.pft.addressbook.tests.GroupModificationTest" time="0.0">
     <failure message="java.lang.NullPointerException" type="java.lang.NullPointerException">java.lang.NullPointerException
 	at ru.stqa.pft.addressbook.appmanager.ApplicationManager.stop(ApplicationManager.java:78)
 	at ru.stqa.pft.addressbook.tests.TestBase.tearDown(TestBase.java:43)

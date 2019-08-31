@@ -20,6 +20,9 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/soup-sample.iml" filepath="$PROJECT_DIR$/.idea/modules/soup-sample.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/soup-sample_main.iml" filepath="$PROJECT_DIR$/.idea/modules/soup-sample_main.iml" group="soup-sample" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/soup-sample_test.iml" filepath="$PROJECT_DIR$/.idea/modules/soup-sample_test.iml" group="soup-sample" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/test-task.iml" filepath="$PROJECT_DIR$/.idea/modules/test-task.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/test-task_main.iml" filepath="$PROJECT_DIR$/.idea/modules/test-task_main.iml" group="test-task" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/test-task_test.iml" filepath="$PROJECT_DIR$/.idea/modules/test-task_test.iml" group="test-task" />
     </modules>
   </component>
 </project>
