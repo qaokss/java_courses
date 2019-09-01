@@ -12,7 +12,7 @@ public class ApplicationManager {
 
     public void init() {
         wd = new FirefoxDriver();
-        wd.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+        wd.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         wd.get("http://blog.csssr.ru/qa-engineer/");
     }
 
